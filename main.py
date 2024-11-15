@@ -6,8 +6,8 @@ pygame.init()
 
 pygame.mixer.init()
 
-# Загрузка музыки и воспроизведение в цикле
-pygame.mixer.music.load("music/last.mp3")
+# Загрузка музыки
+pygame.mixer.music.load("music/bells.mp3")
 pygame.mixer.music.play(-1, 0.0)
 
 # Размеры окна
@@ -53,8 +53,16 @@ while running:
 
     # Отображение фона (небо)
     screen.fill((93, 130, 243))  # Цвет неба (голубой)
+    
+    # Елка
+    pygame.draw.line(screen, (114,63,14), (700, 500), (700, 570), 50)
 
-    # Рисуем тело снеговика
+    # Листья елки (треугольники)
+    pygame.draw.polygon(screen, (255, 255, 255), ((560, 500), (840, 500), (700, 350)))  # Нижний слой
+    pygame.draw.polygon(screen, (255, 255, 255), ((590, 400), (810, 400), (700, 250)))  # Средний слой
+    pygame.draw.polygon(screen, (255, 255, 255), ((620, 300), (780, 300), (700, 150)))  # Верхний слой
+
+    # тело снеговика
     pygame.draw.circle(screen, (255, 255, 255), (400, 500), 90)
     pygame.draw.circle(screen, (255, 255, 255), (400, 400), 70)
     pygame.draw.circle(screen, (255, 255, 255), (400, 300), 50)
@@ -72,7 +80,7 @@ while running:
     pygame.draw.line(screen, (109, 79, 18), (250, 400), (330, 390), 5)
     
     # Нос снеговика
-    pygame.draw.polygon(screen, (196, 141, 30), ((400, 300), (400, 320), (450, 310)))
+    pygame.draw.polygon(screen, (255,126,0), ((400, 300), (400, 320), (450, 310)))
     
     # Рот снеговика
     pygame.draw.line(screen, (109, 79, 18), (385, 325), (415, 325), 3)
@@ -107,8 +115,6 @@ while running:
 pygame.mixer.music.stop()  # Остановка музыки при выходе
 
 for event in pygame.event.get():
-    if event.type == pygame.QUIT():
- 
+    if event.type == pygame.QUIT:
         pygame.quit()
- 
         exit()
